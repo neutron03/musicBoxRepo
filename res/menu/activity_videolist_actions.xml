@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+   <item
+        android:id="@+id/selected"
+        android:showAsAction="never"
+        android:title="selected"/>
+     
+      <item
+        android:id="@+id/delete"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_action_delete"
+        android:title="D"/>
+
+    
+    <!-- Search / will display always -->
+    <item
+        android:id="@+id/newvideo"
+        android:icon="@drawable/ic_action_new_video"
+        android:showAsAction="ifRoom"
+        android:title="Search"/>
+
+    <!-- Refresh -->
+    <item
+        android:id="@+id/refrech"
+        android:showAsAction="ifRoom"
+        android:title="@string/refrech"/>
+
+    <!-- Sort -->
+    <item
+        android:id="@+id/sort"
+        android:showAsAction="never"
+        android:title="@string/sort"/>
+
+    <!-- multi delete -->
+    <item
+        android:id="@+id/deleteall"
+        android:showAsAction="never"
+        android:title="@string/deleteall"/>
+    
+    
+     
+</menu>

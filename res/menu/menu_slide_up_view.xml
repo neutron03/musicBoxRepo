@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.slideup.SlideUpViewActivity">
+    <item
+        android:id="@+id/action_slide_down"
+        android:title="slide_down_sample"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_slide_start"
+        android:title="slide_start_sample"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_slide_end"
+        android:title="slide_end_sample"
+        app:showAsAction="never" />
+</menu>

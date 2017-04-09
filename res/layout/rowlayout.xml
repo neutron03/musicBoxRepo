@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp" >
+
+    <!-- Thumbnail Image -->
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        android:contentDescription="row" />
+
+    <!-- Movie Title -->
+
+    <TextView
+        android:id="@+id/video_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0D47A1"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/title"
+        android:textStyle="bold" />
+
+    <!-- Rating -->
+
+    <TextView
+        android:id="@+id/video_duration"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_name"
+        android:textColor="#1976D2"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/rating" />
+
+    <!-- Genre -->
+
+   <!--  <TextView
+        android:id="@+id/genre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_duration"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="aaa"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/genre" /> -->
+
+    <!-- Release Year -->
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:focusable="false"
+        android:visibility="invisible"
+         android:clickable="false"
+        android:focusableInTouchMode="false" />
+
+</RelativeLayout>
