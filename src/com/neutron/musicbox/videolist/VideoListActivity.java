@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -150,7 +152,7 @@ public class VideoListActivity extends ListActivity {
 											TextView txtDuration = (TextView)getListView().getChildAt(pos).findViewById(R.id.video_duration);
 											detailsDialogItemsDescription.add(txtName.getText().toString());
 											detailsDialogItemsDescription.add(txtDuration.getText().toString());
-											detailsDialogItemsDescription.add("my creation date");
+											detailsDialogItemsDescription.add(new Date(new File(assetsPropertyReader.VIDEO_FOLDER_URI+txtName.getText().toString()).lastModified()).toString());
 											AlertDialog.Builder builder = new AlertDialog.Builder(
 													VideoListActivity.this,R.style.MyAlertDialogStyle);
 											
@@ -239,13 +241,10 @@ public class VideoListActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Take appropriate action for each action item click
 		switch (item.getItemId()) {
-		case R.id.sort:
-
-			return true;
 		case R.id.refrech:
-			final ProgressDialog dialog = ProgressDialog.show(this, "",
-					getApplicationContext().getString(R.string.refreching),
-					true);
+			final ProgressDialog dialog = new ProgressDialog(this);
+			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+			dialog.setMessage(getApplicationContext().getString(R.string.refreching));
 			dialog.show();
 			refrechList();
 			Handler handler = new Handler();
@@ -339,7 +338,6 @@ public class VideoListActivity extends ListActivity {
 		menu.findItem(R.id.delete).setVisible(false);
 		menu.findItem(R.id.newvideo).setVisible(true);
 		menu.findItem(R.id.refrech).setVisible(true);
-		menu.findItem(R.id.sort).setVisible(true);
 		menu.findItem(R.id.deleteall).setVisible(true);
 	}
 
@@ -348,7 +346,6 @@ public class VideoListActivity extends ListActivity {
 		// count = 1;
 		menu.findItem(R.id.newvideo).setVisible(false);
 		menu.findItem(R.id.refrech).setVisible(false);
-		menu.findItem(R.id.sort).setVisible(false);
 		menu.findItem(R.id.deleteall).setVisible(false);
 
 		menu.findItem(R.id.selected).setVisible(true)

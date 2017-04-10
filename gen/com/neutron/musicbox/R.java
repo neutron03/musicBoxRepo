@@ -2054,10 +2054,10 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09003e;
         public static final int action_mode_bar_stub=0x7f09003d;
         public static final int action_mode_close_button=0x7f090023;
-        public static final int action_settings=0x7f090081;
-        public static final int action_slide_down=0x7f09007e;
-        public static final int action_slide_end=0x7f090080;
-        public static final int action_slide_start=0x7f09007f;
+        public static final int action_settings=0x7f090080;
+        public static final int action_slide_down=0x7f09007d;
+        public static final int action_slide_end=0x7f09007f;
+        public static final int action_slide_start=0x7f09007e;
         public static final int activity_chooser_view_content=0x7f090024;
         public static final int alertTitle=0x7f090030;
         public static final int always=0x7f090019;
@@ -2082,7 +2082,7 @@ containing a value of this type.
         public static final int decor_content_parent=0x7f09003f;
         public static final int default_activity_button=0x7f090027;
         public static final int delete=0x7f090079;
-        public static final int deleteall=0x7f09007d;
+        public static final int deleteall=0x7f09007c;
         public static final int dim=0x7f09005b;
         public static final int disableHome=0x7f09000d;
         public static final int edit_query=0x7f090043;
@@ -2141,7 +2141,6 @@ containing a value of this type.
         public static final int showHome=0x7f090011;
         public static final int showTitle=0x7f090012;
         public static final int slideView=0x7f090060;
-        public static final int sort=0x7f09007c;
         public static final int spacer=0x7f09002c;
         public static final int split_action_bar=0x7f090004;
         public static final int src_atop=0x7f090016;
@@ -2366,11 +2365,11 @@ containing a value of this type.
         /**  Base application theme. 
          */
         public static final int AppTheme=0x7f0b013e;
-        public static final int AppTheme_AppBarOverlay=0x7f0b0140;
+        public static final int AppTheme_AppBarOverlay=0x7f0b0141;
         /**  <item name="windowNoTitle">true</item> 
          */
         public static final int AppTheme_NoActionBar=0x7f0b013f;
-        public static final int AppTheme_PopupOverlay=0x7f0b0141;
+        public static final int AppTheme_PopupOverlay=0x7f0b0142;
         public static final int Base_AlertDialog_AppCompat=0x7f0b00d0;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f0b00d1;
         public static final int Base_Animation_AppCompat_Dialog=0x7f0b00cc;
@@ -2562,7 +2561,9 @@ containing a value of this type.
     
          */
         public static final int Base_Widget_AppCompat_Toolbar_Button_Navigation=0x7f0b00b0;
-        public static final int MyAlertDialogStyle=0x7f0b0142;
+        public static final int CustomAlertDialogStyle=0x7f0b0145;
+        public static final int MyAlertDialogStyle=0x7f0b0143;
+        public static final int MyTheme=0x7f0b0144;
         public static final int Platform_AppCompat=0x7f0b010d;
         public static final int Platform_AppCompat_Light=0x7f0b010e;
         /**  Overlay themes 
@@ -2661,6 +2662,7 @@ containing a value of this type.
          */
         public static final int Theme_AppCompat=0x7f0b00fa;
         /**  Menu/item attributes 
+ <item name="android:actionMenuTextColor">#000000</item>  pour changer la couleur de "plus"sur le menu 
          */
         public static final int Theme_AppCompat_CompactMenu=0x7f0b0107;
         /**  AppCompat theme (day/night vesion) for activities. 
@@ -2835,6 +2837,7 @@ containing a value of this type.
          */
         public static final int Widget_AppCompat_Toolbar=0x7f0b0047;
         public static final int Widget_AppCompat_Toolbar_Button_Navigation=0x7f0b0048;
+        public static final int myCustomMenuTextApearance=0x7f0b0140;
     }
     public static final class styleable {
         /**  ============================================ 

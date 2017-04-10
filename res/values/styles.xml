@@ -1,7 +1,8 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -13,17 +14,47 @@
         <!-- <item name="windowNoTitle">true</item> -->
     </style>
 
+    <style name="Theme.AppCompat.CompactMenu" parent="Base.Theme.AppCompat.CompactMenu">
+        <item name="android:itemBackground">#00ACC1</item>
+        <item name="colorAccent">#000000</item>
+        <!-- <item name="android:actionMenuTextColor">#000000</item>  pour changer la couleur de "plus"sur le menu -->
+
+    </style>
+
+    <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">#000000</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    
+
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-    <!-- Used for the buttons -->
-    <item name="colorAccent">#000000</item>
-    <!-- Used for the title and text -->
-    <item name="android:textColorPrimary">#000000</item>
-    <!-- Used for the background -->
-    <item name="android:background">#FFFFFF</item>
+
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#000000</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#000000</item>
+        <!-- Used for the background -->
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <style name="MyTheme"  parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>
+        <item name="android:textColorPrimary">#80000000</item>
+    </style>
+    
+    <style name="CustomAlertDialogStyle">
+    <item name="android:bottomBright">#80000000</item>
+    <item name="android:bottomDark">#80000000</item>
+    <item name="android:bottomMedium">#80000000</item>
+    <item name="android:centerBright">#80000000</item>
+    <item name="android:centerDark">#80000000</item>
+    <item name="android:centerMedium">#80000000</item>
+    <item name="android:fullBright">#80000000</item>
+    <item name="android:fullDark">#80000000</item>
+    <item name="android:topBright">#80000000</item>
+    <item name="android:topDark">#80000000</item>
 </style>
 
 </resources>
