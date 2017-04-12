@@ -242,8 +242,7 @@ public class VideoListActivity extends ListActivity {
 		// Take appropriate action for each action item click
 		switch (item.getItemId()) {
 		case R.id.refrech:
-			final ProgressDialog dialog = new ProgressDialog(this);
-			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+			final ProgressDialog dialog = new ProgressDialog(this,AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
 			dialog.setMessage(getApplicationContext().getString(R.string.refreching));
 			dialog.show();
 			refrechList();
@@ -257,7 +256,7 @@ public class VideoListActivity extends ListActivity {
 			return true;
 		case R.id.deleteall:
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.MyAlertDialogStyle);
 
 			builder.setTitle(VideoListActivity.this.getString(R.string.confirm));
 			builder.setMessage(VideoListActivity.this
