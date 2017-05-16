@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/bbb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" >
+
+            <Button
+                android:id="@+id/choosehit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@layout/roundedbutton"
+                android:drawableLeft="@drawable/ic_audiotrack"
+                android:drawablePadding="-1dp"
+                android:paddingLeft="30dip"
+                android:paddingRight="26dip"
+                android:text="Browse a song.." />
+
+            <RelativeLayout
+            android:id="@+id/eee"
+            android:layout_below="@+id/choosehit"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content" >
+
+                <!-- Thumbnail Image -->
+
+                <ImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="8dp"
+                    android:contentDescription="row" />
+
+                <!-- Movie Title -->
+
+                <TextView
+                    android:id="@+id/music_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:textColor="#0D47A1"
+                    android:textSize="@dimen/title"
+                    android:text="Song : "
+                    android:visibility="invisible"
+                    android:textStyle="bold" />
+
+                <!-- Rating -->
+
+                <TextView
+                    android:id="@+id/artiste"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/music_title"
+                    android:layout_marginTop="1dip"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Artise : "
+                    android:visibility="invisible"
+                    android:textColor="#1976D2"
+                    android:textSize="@dimen/rating" />
+
+                <!-- Genre -->
+
+
+                <!--
+         <TextView
+        android:id="@+id/genre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_duration"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="aaa"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/genre" />
+                -->
+
+
+                <!-- Release Year -->
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:visibility="invisible"
+                    android:focusableInTouchMode="false" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ccc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+
+            <Button
+                android:id="@+id/Startrecording"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="50dp"
+                android:enabled="false"
+                android:text="Start Recording" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

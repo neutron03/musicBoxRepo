@@ -45,7 +45,7 @@ public class VideoListActivity extends ListActivity {
 
 	private List<String> videosList;
 	private AlertDialog.Builder builder;
-	private AssetsPropertyReader assetsPropertyReader;
+	public static AssetsPropertyReader assetsPropertyReader;
 	private Context context;
 	private Menu menu;
 	public int count;

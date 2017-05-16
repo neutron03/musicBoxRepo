@@ -1,9 +1,14 @@
 package com.neutron.musicbox.camera;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
@@ -12,14 +17,17 @@ import android.media.CamcorderProfile;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -42,6 +50,7 @@ public class CameraActivity extends Activity {
 	ImageView recordimageView;
 	ImageView redSpotImageView;
 	int redSpotVisibility = 1;
+	public static AssetsPropertyReader assetsPropertyReader;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,8 @@ public class CameraActivity extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		myContext = this;
 		initialize();
+		assetsPropertyReader = new AssetsPropertyReader(this);
+		AssetsPropertyReader.initProperties();
 	}
 
 	private int findFrontFacingCamera() {
@@ -112,6 +123,7 @@ public class CameraActivity extends Activity {
 		mPreview = new CameraPreview(myContext, mCamera);
 		cameraPreview.addView(mPreview);
 	}
+
 	public void initRecordButton() {
 		tableLayout = (TableLayout) findViewById(R.id.bottomTableLayout);
 		TableRow row = (TableRow) tableLayout.getChildAt(0);
@@ -121,20 +133,30 @@ public class CameraActivity extends Activity {
 		int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
 		recordimageView.getLayoutParams().height = displayWidth / 3;
 		recordimageView = (ImageView) findViewById(R.id.recordButton);
+		recordimageView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 	}
-	public void initRedSpot(){
+
+	public void initRedSpot() {
 		tableLayout = (TableLayout) findViewById(R.id.topTableLayout);
 		TableRow row = (TableRow) tableLayout.getChildAt(0);
 		redSpotImageView = (ImageView) row.getChildAt(0);
-		
+
 		int displayHeight = getWindowManager().getDefaultDisplay().getHeight();
 		int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
 		redSpotImageView.getLayoutParams().height = displayWidth / 11;
 		redSpotImageView.getLayoutParams().width = displayWidth / 50;
 		redSpotImageView = (ImageView) findViewById(R.id.redSpot);
 	}
-	public ScaleAnimation getScaleAnimation(){
+
+	public ScaleAnimation getScaleAnimation() {
 		final ScaleAnimation scale = new ScaleAnimation(0, 1, 0, 1,
 				ScaleAnimation.RELATIVE_TO_SELF, .5f,
 				ScaleAnimation.RELATIVE_TO_SELF, .5f);
@@ -142,11 +164,11 @@ public class CameraActivity extends Activity {
 		scale.setInterpolator(new OvershootInterpolator());
 		return scale;
 	}
-	public void showHideRedSpotAnimation(){
+
+	public void showHideRedSpotAnimation() {
 		WhileRecordingAsyncTask a = new WhileRecordingAsyncTask();
 		a.execute();
 	}
-	
 
 	public void initialize() {
 		setVolumeToMax();
@@ -154,6 +176,7 @@ public class CameraActivity extends Activity {
 		initRecordButton();
 		initRedSpot();
 		showHideRedSpotAnimation();
+		recordimageView.setOnClickListener(captrureListener);
 		// capture = (Button) findViewById(R.id.button_ChangeCamera);
 		// capture.setOnClickListener(captrureListener);
 		// switchCamera = (Button) findViewById(R.id.button_ChangeCamera);
@@ -229,54 +252,98 @@ public class CameraActivity extends Activity {
 
 	boolean recording = false;
 
-	// OnClickListener captrureListener = new OnClickListener() {
-	// @Override
-	// public void onClick(View v) {
-	// if (recording) {
-	// // stop recording and release camera
-	// mediaRecorder.stop(); // stop the recording
-	// releaseMediaRecorder(); // release the MediaRecorder object
-	// Toast.makeText(CameraActivity.this, "Video captured!",
-	// Toast.LENGTH_LONG).show();
-	// recording = false;
-	// } else {
-	// if (!prepareMediaRecorder()) {
-	// Toast.makeText(CameraActivity.this,
-	// "Fail in prepareMediaRecorder()!\n - Ended -",
-	// Toast.LENGTH_LONG).show();
-	// finish();
-	// }
-	// // work on UiThread for better performance
-	// runOnUiThread(new Runnable() {
-	// public void run() {
-	// // If there are stories, add them to the table
-	//
-	// try {
-	//
-	// mediaRecorder.start();
-	// Intent intent = getIntent();
-	// String easyPuzzle = intent.getExtras().getString(
-	// "audioPath");
-	//
-	// mPlayer = new MediaPlayer();
-	// Uri myUri = Uri.parse("file://" + easyPuzzle);
-	// mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-	//
-	// mPlayer.setDataSource(getApplicationContext(),
-	// myUri);
-	// mPlayer.prepare();
-	// mPlayer.start();
-	//
-	// } catch (final Exception ex) {
-	// // Log.i("---","Exception in thread");
-	// }
-	// }
-	// });
-	//
-	// recording = true;
-	// }
-	// }
-	// };
+	OnClickListener captrureListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (recording) {
+				// stop recording and release camera
+				mediaRecorder.stop(); // stop the recording
+				releaseMediaRecorder(); // release the MediaRecorder object
+				Toast.makeText(CameraActivity.this, "Video captured!",
+						Toast.LENGTH_LONG).show();
+				recording = false;
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+				String currentDateandTime = sdf.format(new Date());
+
+				final EditText input = new EditText(CameraActivity.this);
+				input.setText(currentDateandTime+".mp4");
+				input.setSelectAllOnFocus(true);
+				input.selectAll();
+				final File dir = new File(assetsPropertyReader.VIDEO_FOLDER_URI);
+				final File from = new File(dir,"newVideo.mp4");
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						CameraActivity.this);
+				builder.setView(input);
+				builder.setMessage("Video name")
+						.setCancelable(false)
+						.setPositiveButton("Yes",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										
+										if(dir.exists()){
+										    
+										    File to = new File(dir,input.getText().toString());
+										     if(from.exists())
+										        from.renameTo(to);
+										}	
+										dialog.cancel();
+									}
+								})
+						.setNegativeButton("Cancel",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										dialog.cancel();
+									}
+								});
+				AlertDialog alert = builder.create();
+				alert.show();
+
+				// mediaRecorder.setOutputFile(AssetsPropertyReader.VIDEO_FOLDER_URI+"myvideo.mp4");
+
+			} else {
+				if (!prepareMediaRecorder()) {
+					Toast.makeText(CameraActivity.this,
+							"Fail in prepareMediaRecorder()!\n - Ended -",
+							Toast.LENGTH_LONG).show();
+					finish();
+				}
+				// work on UiThread for better performance
+				runOnUiThread(new Runnable() {
+					public void run() {
+						// If there are stories, add them to the table
+
+						try {
+
+							mediaRecorder.start();
+
+							String selectedSong = getIntent().getStringExtra(
+									"selectedSong");
+
+							Log.i("aaaaaaaaaa", selectedSong);
+							mPlayer = new MediaPlayer();
+							Uri myUri = Uri.parse("file://" + selectedSong);
+							mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+							mPlayer.setDataSource(getApplicationContext(),
+									myUri);
+							mPlayer.prepare();
+							mPlayer.start();
+
+						} catch (final Exception ex) {
+							Log.i("aze", "aze");
+							// Log.i("---","Exception in thread");
+						}
+					}
+				});
+
+				recording = true;
+			}
+		}
+	};
 
 	private void releaseMediaRecorder() {
 		if (mediaRecorder != null) {
@@ -305,9 +372,18 @@ public class CameraActivity extends Activity {
 		mediaRecorder.setProfile(CamcorderProfile
 				.get(CamcorderProfile.QUALITY_720P));
 
-		mediaRecorder.setOutputFile("/sdcard/myvideo.mp4");
-		mediaRecorder.setMaxDuration(AssetsPropertyReader.VIDEO_MAX_DURATION); // Set max duration 60 sec.
-		mediaRecorder.setMaxFileSize(AssetsPropertyReader.VIDEO_MAX_SIZE); // Set max file size 50M
+		//mediaRecorder.setOutputFile("/sdcard/myvideo.mp4"); 
+		mediaRecorder.setOutputFile(assetsPropertyReader.VIDEO_FOLDER_URI+"newVideo.mp4");
+		mediaRecorder.setMaxDuration(AssetsPropertyReader.VIDEO_MAX_DURATION); // Set
+																				// max
+																				// duration
+																				// 60
+																				// sec.
+		mediaRecorder.setMaxFileSize(AssetsPropertyReader.VIDEO_MAX_SIZE); // Set
+																			// max
+																			// file
+																			// size
+																			// 50M
 
 		mediaRecorder.setOnInfoListener(new OnInfoListener() {
 			@Override

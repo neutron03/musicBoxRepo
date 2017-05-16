@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/aaa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:weightSum="5" >
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="6" >
+
+            <Button
+                
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/newvideo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:layout_weight="2"
+                android:text="2" />
+             <Button
+                 android:id="@+id/videolist"
+                 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:layout_weight="2"
+                android:text="2" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/ccc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cccc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
